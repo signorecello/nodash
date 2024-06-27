@@ -12,7 +12,7 @@ nodash = { git = "https://github.com/olehmisar/nodash", tag = "main" }
 
 ## Docs
 
-### `sqrt`
+### `math::sqrt`
 
 ```rs
 use dep::nodash::math::sqrt::sqrt;
@@ -23,7 +23,7 @@ assert(sqrt(U128::from_integer(4)) == U128::from_integer(2));
 assert(sqrt(U128::from_integer(8)) == U128::from_integer(2));
 ```
 
-### `min`
+### `math::min`
 
 ```rs
 use dep::nodash::math::min;
@@ -31,7 +31,7 @@ use dep::nodash::math::min;
 assert(min(U128::from_integer(1), U128::from_integer(2)) == U128::from_integer(1));
 ```
 
-### `max`
+### `math::max`
 
 ```rs
 use dep::nodash::math::max;
@@ -39,7 +39,7 @@ use dep::nodash::math::max;
 assert(max(U128::from_integer(1), U128::from_integer(2)) == U128::from_integer(2));
 ```
 
-### `clamp`
+### `math::clamp`
 
 ```rs
 use dep::nodash::math::clamp;
@@ -50,4 +50,22 @@ assert(clamp(U128::from_integer(1), U128::from_integer(2), U128::from_integer(3)
 assert(clamp(U128::from_integer(4), U128::from_integer(2), U128::from_integer(3)) == U128::from_integer(3));
 // if in range, return value
 assert(clamp(U128::from_integer(2), U128::from_integer(2), U128::from_integer(3)) == U128::from_integer(2));
+```
+
+### `solidity::encode_with_selector`
+
+Equivalent to `abi.encodeWithSelector` in Solidity.
+
+_Note: due to Noir limitations, you have to pass the result array as the last argument. The length of the array should be `4 + N * 32` where `N` is the number of arguments. In the example below, `4 + 2 * 32 == 68`_
+
+```rs
+use dep::nodash::solidity::encode_with_selector;
+
+let selector: u32 = 0xa9059cbb; // transfer(address,uint256)
+let args: [Field; 2] = [
+  0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045, // address
+  123 // uint256
+];
+let encoded = encode_with_selector(selector, args, [0; 68]);
+// typeof encoded: [u8; 68]
 ```
