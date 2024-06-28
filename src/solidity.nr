@@ -25,11 +25,16 @@ mod tests {
 
     #[test]
     fn test_simple() {
-        let result = encode_with_selector(0xbd87d14b, [1, 2], [0; 68]);
-        let expected= [
-            189, 135, 209, 75, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2
+        let selector: u32 = 0xa9059cbb; // transfer(address,uint256)
+        let args: [Field; 2] = [
+            0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045,// address
+            123// uint256
         ];
-        assert(result == expected);
+        let encoded = encode_with_selector(selector, args, [0; 68]);
+        let expected: [u8; 68] = [
+            169, 5, 156, 187, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 216, 218, 107, 242, 105, 100, 175, 157, 126, 237, 158, 3, 229, 52, 21, 211, 122, 169, 96, 69, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 123
+        ];
+        assert(encoded == expected);
     }
 
     #[test]

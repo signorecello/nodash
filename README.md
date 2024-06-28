@@ -4,10 +4,18 @@ Nodash is a utility library for [Noir](https://github.com/noir-lang/noir) langua
 
 ## Installation
 
-Put this into your Nargo.toml:
+Put this into your Nargo.toml.
+
+If you are using Noir:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash", tag = "main" }
+nodash = { git = "https://github.com/olehmisar/nodash", tag = "noir-v0.30.0" }
+```
+
+If you are using Aztec:
+
+```toml
+nodash = { git = "https://github.com/olehmisar/nodash", tag = "aztec-packages-v0.44.0" }
 ```
 
 ## Docs
