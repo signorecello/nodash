@@ -23,33 +23,17 @@ assert(sqrt(U128::from_integer(4)) == U128::from_integer(2));
 assert(sqrt(U128::from_integer(8)) == U128::from_integer(2));
 ```
 
-### `math::min`
-
-```rs
-use dep::nodash::math::min;
-
-assert(min(U128::from_integer(1), U128::from_integer(2)) == U128::from_integer(1));
-```
-
-### `math::max`
-
-```rs
-use dep::nodash::math::max;
-
-assert(max(U128::from_integer(1), U128::from_integer(2)) == U128::from_integer(2));
-```
-
 ### `math::clamp`
 
 ```rs
 use dep::nodash::math::clamp;
 
 // if too small, return min
-assert(clamp(U128::from_integer(1), U128::from_integer(2), U128::from_integer(3)) == U128::from_integer(2));
+assert(clamp(1 as u64, 2 as u64, 3 as u64) == 2 as u64);
 // if too big, return max
-assert(clamp(U128::from_integer(4), U128::from_integer(2), U128::from_integer(3)) == U128::from_integer(3));
+assert(clamp(4 as u64, 1 as u64, 3 as u64) == 3 as u64);
 // if in range, return value
-assert(clamp(U128::from_integer(2), U128::from_integer(2), U128::from_integer(3)) == U128::from_integer(2));
+assert(clamp(2 as u64, 1 as u64, 3 as u64) == 2 as u64);
 ```
 
 ### `solidity::encode_with_selector`
