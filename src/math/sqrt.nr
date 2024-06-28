@@ -1,16 +1,22 @@
+use dep::std::{ops::{Mul, Div, Add}, cmp::Ord};
+
 // TODO: check if this is correct
-pub fn sqrt(value: U128) -> U128 {
+pub fn sqrt<T>(value: T) -> T where T: Numeric + Mul + Ord + Add + Div {
     let r = sqrt_unconstrained(value);
     assert(value >= r * r);
-    let r_plus_1 = r + U128::from_integer(1);
+    let ONE: T = Numeric::one();
+    let r_plus_1 = r + ONE;
     assert(value < r_plus_1 * r_plus_1);
     r
 }
 
-unconstrained fn sqrt_unconstrained(value: U128) -> U128 {
-    if value > U128::from_integer(3) {
-        let ONE = U128::from_integer(1);
-        let TWO = U128::from_integer(2);
+unconstrained fn sqrt_unconstrained<T>(value: T) -> T where T: Numeric + Ord + Add + Div {
+    let ZERO: T = Numeric::zero();
+    let ONE: T = Numeric::one();
+    let TWO = ONE + ONE;
+    let THREE = TWO + ONE;
+
+    if value > THREE {
         let mut z = value;
         let mut x = value / TWO + ONE;
         for _ in 0..999999999 {
@@ -22,10 +28,52 @@ unconstrained fn sqrt_unconstrained(value: U128) -> U128 {
             }
         }
         z
-    } else if value > U128::from_integer(0) {
-        U128::from_integer(1)
+    } else if value > ZERO {
+        ONE
     } else {
+        ZERO
+    }
+}
+
+// TODO: remove this trait if it is implemented in Noir std lib.
+trait Numeric {
+    fn zero() -> Self;
+    fn one() -> Self;
+}
+
+impl Numeric for u8 {
+    fn zero() -> Self {
+        0
+    }
+    fn one() -> Self {
+        1
+    }
+}
+
+impl Numeric for u32 {
+    fn zero() -> Self {
+        0
+    }
+    fn one() -> Self {
+        1
+    }
+}
+
+impl Numeric for u64 {
+    fn zero() -> Self {
+        0
+    }
+    fn one() -> Self {
+        1
+    }
+}
+
+impl Numeric for U128 {
+    fn zero() -> Self {
         U128::from_integer(0)
+    }
+    fn one() -> Self {
+        U128::from_integer(1)
     }
 }
 
@@ -37,6 +85,14 @@ mod sqrt_tests {
         let value = U128::from_integer(170141183460469231731687303715884105727);
         let result = sqrt(value);
         assert(result == U128::from_integer(13043817825332782212));
+    }
+
+    #[test]
+    fn test_multiple_data_types() {
+        assert(sqrt(18 as u8) == 4);
+        assert(sqrt(2482737472 as u32) == 49827);
+        assert(sqrt(14446244073709551616 as u64) == 3800821499);
+        assert(sqrt(U128::from_integer(1444624284781234073709551616)) == U128::from_integer(38008213385809));
     }
 
     #[test]

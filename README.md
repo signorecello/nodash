@@ -25,10 +25,10 @@ nodash = { git = "https://github.com/olehmisar/nodash", tag = "aztec-packages-v0
 ```rs
 use dep::nodash::math::sqrt::sqrt;
 
-assert(sqrt(U128::from_integer(4)) == U128::from_integer(2));
+assert(sqrt(4 as u64) == 2);
 
 // it floors the result
-assert(sqrt(U128::from_integer(8)) == U128::from_integer(2));
+assert(sqrt(8 as u64) == 2);
 ```
 
 ### `math::clamp`
