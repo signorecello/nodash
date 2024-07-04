@@ -9,13 +9,13 @@ Put this into your Nargo.toml.
 If you are using Noir:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash", tag = "noir-v0.31.0" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "noir-v0.31.1" }
 ```
 
 If you are using Aztec:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash", tag = "aztec-v0.45.0" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "aztec-v0.45.1" }
 ```
 
 ## Docs
@@ -23,7 +23,7 @@ nodash = { git = "https://github.com/olehmisar/nodash", tag = "aztec-v0.45.0" }
 ### `math::sqrt`
 
 ```rs
-use dep::nodash::math::sqrt::sqrt;
+use nodash::math::sqrt::sqrt;
 
 assert(sqrt(4 as u64) == 2);
 
@@ -34,7 +34,7 @@ assert(sqrt(8 as u64) == 2);
 ### `math::clamp`
 
 ```rs
-use dep::nodash::math::clamp;
+use nodash::math::clamp;
 
 // if too small, return min
 assert(clamp(1 as u64, 2 as u64, 3 as u64) == 2 as u64);
@@ -51,7 +51,7 @@ Equivalent to `abi.encodeWithSelector` in Solidity.
 _Note: due to Noir limitations, you have to pass the result array as the last argument. The length of the array should be `4 + N * 32` where `N` is the number of arguments. In the example below, `4 + 2 * 32 == 68`_
 
 ```rs
-use dep::nodash::solidity::encode_with_selector;
+use nodash::solidity::encode_with_selector;
 
 let selector: u32 = 0xa9059cbb; // transfer(address,uint256)
 let args: [Field; 2] = [

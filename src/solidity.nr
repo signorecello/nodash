@@ -1,6 +1,10 @@
-use dep::std;
+use std;
 
-pub fn encode_with_selector<let N: u32, let M: u32>(selector: u32, args: [Field; N], mut result: [u8; M]) -> [u8; M] {
+pub fn encode_with_selector<let N: u32, let M: u32>(
+    selector: u32,
+    args: [Field; N],
+    mut result: [u8; M]
+) -> [u8; M] {
     // TODO: remove this assert
     assert(M == 4 + N * 32, "Invalid result length");
 

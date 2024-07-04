@@ -1,4 +1,4 @@
-use dep::std::{ops::{Mul, Div, Add}, cmp::Ord};
+use std::{ops::{Mul, Div, Add}, cmp::Ord};
 
 // TODO: check if this is correct
 pub fn sqrt<T>(value: T) -> T where T: Numeric + Mul + Ord + Add + Div {
@@ -178,7 +178,7 @@ mod sqrt_tests {
         for pair in pairs {
             let value = U128::from_integer(pair[0]);
             let result = sqrt(value);
-            // dep::std::println(f"{pair} {result}");
+            // std::println(f"{pair} {result}");
             assert(result == U128::from_integer(pair[1]));
         }
     }
