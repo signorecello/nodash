@@ -1,23 +1,20 @@
 use std;
 
-pub fn encode_with_selector<let N: u32, let M: u32>(
-    selector: u32,
-    args: [Field; N],
-    mut result: [u8; M]
-) -> [u8; M] {
-    // TODO: remove this assert
-    assert(M == 4 + N * 32, "Invalid result length");
+global SELECTOR_LENGTH = 4;
 
-    // TODO: can this be optimized? Bitshifting is expensive, isn't it?
-    result[0] = (selector >> 24) as u8;
-    result[1] = (selector >> 16) as u8;
-    result[2] = (selector >> 8) as u8;
-    result[3] = selector as u8;
+pub fn encode_with_selector<let N: u32, let M: u32>(selector: u32, args: [Field; N], mut result: [u8; M]) -> [u8; M] {
+    // TODO: remove this assert
+    assert(M == SELECTOR_LENGTH + N * 32, "Invalid result length");
+
+    let selector_bytes = (selector as Field).to_be_bytes(4);
+    for i in 0..SELECTOR_LENGTH {
+        result[i] = selector_bytes[i];
+    }
 
     for i in 0..N {
         let bytes = args[i].to_be_bytes(32);
         for j in 0..32 {
-            result[4 + i * 32 + j] = bytes[j];
+            result[SELECTOR_LENGTH + i * 32 + j] = bytes[j];
         }
     }
 
