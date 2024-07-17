@@ -9,13 +9,13 @@ Put this into your Nargo.toml.
 If you are using Noir:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash/", tag = "noir-v0.31.1" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "noir-v0.31.2" }
 ```
 
 If you are using Aztec:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash/", tag = "aztec-v0.45.1" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "aztec-v0.46.7" }
 ```
 
 ## Docs
