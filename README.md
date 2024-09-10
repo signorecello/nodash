@@ -9,21 +9,21 @@ Put this into your Nargo.toml.
 If you are using Noir:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash/", tag = "noir-v0.31.2" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "noir-v0.33.0" }
 ```
 
 If you are using Aztec:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash/", tag = "aztec-v0.46.7" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "aztec-v0.52.0" }
 ```
 
 ## Docs
 
-### `math::sqrt`
+### `sqrt`
 
 ```rs
-use nodash::math::sqrt::sqrt;
+use nodash::sqrt;
 
 assert(sqrt(4 as u64) == 2);
 
@@ -31,10 +31,10 @@ assert(sqrt(4 as u64) == 2);
 assert(sqrt(8 as u64) == 2);
 ```
 
-### `math::clamp`
+### `clamp`
 
 ```rs
-use nodash::math::clamp;
+use nodash::clamp;
 
 // if too small, return min
 assert(clamp(1 as u64, 2 as u64, 3 as u64) == 2 as u64);
@@ -60,4 +60,20 @@ let args: [Field; 2] = [
 ];
 let encoded = encode_with_selector(selector, args, [0; 68]);
 // typeof encoded: [u8; 68]
+```
+
+### `to_hex_string_bytes`
+
+Converts a `Field` to a hex string.
+
+```rs
+fn to_hex_string_bytes(value: Field) -> [u8; 64]
+```
+
+### `array_concat`
+
+Concatenates two arrays.
+
+```rs
+fn array_concat<T, let L1: u32, let L2: u32, let L: u32>(a: [T; L1], b: [T; L2]) -> [T; L]
 ```
