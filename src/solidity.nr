@@ -6,13 +6,13 @@ pub fn encode_with_selector<let N: u32, let M: u32>(selector: u32, args: [Field;
     // TODO: remove this assert
     assert(M == SELECTOR_LENGTH + N * 32, "Invalid result length");
 
-    let selector_bytes = (selector as Field).to_be_bytes(4);
+    let selector_bytes: [u8; 4] = (selector as Field).to_be_bytes();
     for i in 0..SELECTOR_LENGTH {
         result[i] = selector_bytes[i];
     }
 
     for i in 0..N {
-        let bytes = args[i].to_be_bytes(32);
+        let bytes: [u8; 32] = args[i].to_be_bytes();
         for j in 0..32 {
             result[SELECTOR_LENGTH + i * 32 + j] = bytes[j];
         }

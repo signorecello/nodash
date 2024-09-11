@@ -15,7 +15,7 @@ nodash = { git = "https://github.com/olehmisar/nodash/", tag = "noir-v0.33.0" }
 If you are using Aztec:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash/", tag = "aztec-v0.52.0" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "aztec-v0.54.0" }
 ```
 
 ## Docs
