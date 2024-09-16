@@ -9,7 +9,7 @@ Put this into your Nargo.toml.
 If you are using Noir:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash/", tag = "noir-v0.33.0" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "noir-v0.34.1" }
 ```
 
 If you are using Aztec:
@@ -48,8 +48,6 @@ assert(clamp(2 as u64, 1 as u64, 3 as u64) == 2 as u64);
 
 Equivalent to `abi.encodeWithSelector` in Solidity.
 
-_Note: due to Noir limitations, you have to pass the result array as the last argument. The length of the array should be `4 + N * 32` where `N` is the number of arguments. In the example below, `4 + 2 * 32 == 68`_
-
 ```rs
 use nodash::solidity::encode_with_selector;
 
@@ -58,7 +56,7 @@ let args: [Field; 2] = [
   0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045, // address
   123 // uint256
 ];
-let encoded = encode_with_selector(selector, args, [0; 68]);
+let encoded = encode_with_selector(selector, args);
 // typeof encoded: [u8; 68]
 ```
 

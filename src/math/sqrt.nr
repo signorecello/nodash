@@ -2,11 +2,15 @@ use std::{ops::{Mul, Div, Add}, cmp::Ord};
 
 // TODO: check if this is correct
 pub fn sqrt<T>(value: T) -> T where T: Numeric + Mul + Ord + Add + Div {
-    let r = sqrt_unconstrained(value);
-    assert(value >= r * r);
-    let ONE: T = Numeric::one();
-    let r_plus_1 = r + ONE;
-    assert(value < r_plus_1 * r_plus_1);
+    let r = unsafe {
+        // Safety: unsafe sqrt is checked to be between bounds
+        let r = sqrt_unconstrained(value);
+        assert(value >= r * r);
+        let ONE: T = Numeric::one();
+        let r_plus_1 = r + ONE;
+        assert(value < r_plus_1 * r_plus_1);
+        r
+    };
     r
 }
 
