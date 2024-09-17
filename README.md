@@ -73,5 +73,7 @@ fn to_hex_string_bytes(value: Field) -> [u8; 64]
 Concatenates two arrays.
 
 ```rs
-fn array_concat<T, let L1: u32, let L2: u32, let L: u32>(a: [T; L1], b: [T; L2]) -> [T; L]
+use nodash::array_concat;
+
+assert(array_concat([1, 2, 3], [4, 5]) == [1, 2, 3, 4, 5]);
 ```

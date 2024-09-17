@@ -21,9 +21,6 @@ mod array_concat_tests {
 
     #[test]
     fn test_simple() {
-        let a: [u8; 3] = [1, 2, 3];
-        let b: [u8; 2] = [4, 5];
-        let c: [u8; 5] = array_concat(a, b);
-        assert(c == [1, 2, 3, 4, 5]);
+        assert(array_concat([1, 2, 3], [4, 5]) == [1, 2, 3, 4, 5]);
     }
 }
