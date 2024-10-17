@@ -9,13 +9,13 @@ Put this into your Nargo.toml.
 If you are using Noir:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash/", tag = "noir-v0.34.1" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "v0.35.0" }
 ```
 
 If you are using Aztec:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash/", tag = "aztec-v0.54.0" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "aztec-v0.55.0" }
 ```
 
 ## Docs
@@ -42,6 +42,14 @@ assert(clamp(1 as u64, 2 as u64, 3 as u64) == 2 as u64);
 assert(clamp(4 as u64, 1 as u64, 3 as u64) == 3 as u64);
 // if in range, return value
 assert(clamp(2 as u64, 1 as u64, 3 as u64) == 2 as u64);
+```
+
+### `div_ceil`
+
+```rs
+use nodash::div_ceil;
+
+assert(div_ceil(10 as u64, 3) == 4);
 ```
 
 ### `solidity::encode_with_selector`

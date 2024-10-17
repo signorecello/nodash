@@ -1,4 +1,5 @@
 use std::{ops::{Mul, Div, Add}, cmp::Ord};
+use crate::math::numeric::Numeric;
 
 // TODO: check if this is correct
 pub fn sqrt<T>(value: T) -> T where T: Numeric + Mul + Ord + Add + Div {
@@ -36,48 +37,6 @@ unconstrained fn sqrt_unconstrained<T>(value: T) -> T where T: Numeric + Ord + A
         ONE
     } else {
         ZERO
-    }
-}
-
-// TODO: remove this trait if it is implemented in Noir std lib.
-trait Numeric {
-    fn zero() -> Self;
-    fn one() -> Self;
-}
-
-impl Numeric for u8 {
-    fn zero() -> Self {
-        0
-    }
-    fn one() -> Self {
-        1
-    }
-}
-
-impl Numeric for u32 {
-    fn zero() -> Self {
-        0
-    }
-    fn one() -> Self {
-        1
-    }
-}
-
-impl Numeric for u64 {
-    fn zero() -> Self {
-        0
-    }
-    fn one() -> Self {
-        1
-    }
-}
-
-impl Numeric for U128 {
-    fn zero() -> Self {
-        U128::from_integer(0)
-    }
-    fn one() -> Self {
-        U128::from_integer(1)
     }
 }
 
