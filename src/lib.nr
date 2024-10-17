@@ -1,8 +1,9 @@
 mod math;
 mod solidity;
 mod string;
+mod tables;
 
-pub use string::to_hex_string_bytes;
+pub use string::{to_hex_string_bytes, str_to_u64};
 pub use math::{clamp, div_ceil, sqrt::sqrt};
 
 pub fn array_concat<T, let L1: u32, let L2: u32>(a: [T; L1], b: [T; L2]) -> [T; L1 + L2] {

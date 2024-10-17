@@ -9,7 +9,7 @@ Put this into your Nargo.toml.
 If you are using Noir:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash/", tag = "v0.35.0" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "v0.35.1" }
 ```
 
 If you are using Aztec:
@@ -74,6 +74,16 @@ Converts a `Field` to a hex string.
 
 ```rs
 fn to_hex_string_bytes(value: Field) -> [u8; 64]
+```
+
+### `str_to_u64`
+
+Converts a string to a `u64`.
+
+```rs
+use nodash::str_to_u64;
+
+assert(str_to_u64("02345678912345678912") == 02345678912345678912);
 ```
 
 ### `array_concat`
