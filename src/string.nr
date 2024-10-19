@@ -27,6 +27,13 @@ pub fn str_to_u64(arr: impl Into<[u8; U64_STR_LEN]>) -> u64 {
 }
 
 #[test]
+fn test_to_hex_string_bytes() {
+    let my_hash = 0x0d67824fead966192029093a3aa5c719f2b80262c4f14a5c97c5d70e4b27f2bf;
+    let expected = "0d67824fead966192029093a3aa5c719f2b80262c4f14a5c97c5d70e4b27f2bf";
+    assert_eq(to_hex_string_bytes(my_hash), expected.as_bytes());
+}
+
+#[test]
 fn some_test() {
     let outer_hash = 0x0d67824fead966192029093a3aa5c719f2b80262c4f14a5c97c5d70e4b27f2bf;
     let hex_challenge: [u8; 64] = to_hex_string_bytes(outer_hash);
