@@ -12,11 +12,17 @@ If you are using Noir:
 nodash = { git = "https://github.com/olehmisar/nodash/", tag = "v0.35.1" }
 ```
 
+The version of nodash matches the version of Noir. The patch version may be different if a bugfix or a new feature is added for the same version of Noir. E.g., nodash@v0.35.0 and nodash@v0.35.1 are compatible with noir@v0.35.0.
+
+---
+
 If you are using Aztec:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash/", tag = "aztec-v0.55.0" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "aztec-v0.57.0" }
 ```
+
+The version of nodash matches the version of Aztec. E.g., nodash@aztec-v0.57.0 is compatible with aztec@v0.57.0.
 
 ## Docs
 
@@ -45,6 +51,8 @@ assert(clamp(2 as u64, 1 as u64, 3 as u64) == 2 as u64);
 ```
 
 ### `div_ceil`
+
+Calculates `a / b` rounded up to the nearest integer.
 
 ```rs
 use nodash::div_ceil;
