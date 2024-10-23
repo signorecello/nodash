@@ -1,4 +1,14 @@
 impl<T, let N: u32> crate::ArrayExtensions<T, N> for [T; N] {
+    fn slice<let M: u32>(self, start: u32, end: u32) -> [T; M] {
+        assert(start + M == end, "slice: invalid slice length");
+        assert(end <= N, "slice: slice end out of bounds");
+        let mut result = [self[0]; M];
+        for i in 0..M {
+            result[i] = self[start + i];
+        }
+        result
+    }
+
     fn concat<let M: u32>(self, other: [T; M]) -> [T; N + M] {
         let mut result = [self[0]; N + M];
         for i in 0..N {
@@ -30,6 +40,11 @@ impl<T, let N: u32> crate::ArrayExtensions<T, N> for [T; N] {
 }
 
 mod tests {
+    #[test]
+    fn test_slice() {
+        assert([1, 2, 3, 4, 5].slice::<3>(1, 4) == [2, 3, 4]);
+    }
+
     #[test]
     fn test_simple() {
         assert([1, 2, 3].concat([4, 5]) == [1, 2, 3, 4, 5]);

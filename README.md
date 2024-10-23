@@ -9,7 +9,7 @@ Put this into your Nargo.toml.
 If you are using Noir:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash/", tag = "v0.35.1" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "v0.35.3" }
 ```
 
 The version of nodash matches the version of Noir. The patch version may be different if a bugfix or a new feature is added for the same version of Noir. E.g., nodash@v0.35.0 and nodash@v0.35.1 are compatible with noir@v0.35.0.
@@ -97,6 +97,16 @@ assert(str_to_u64("02345678912345678912") == 02345678912345678912);
 ```
 
 ### `ArrayExtensions`
+
+#### `slice`
+
+Returns a slice of the array.
+
+```rs
+use nodash::ArrayExtensions;
+
+assert([1, 2, 3, 4, 5].slice::<3>(1, 4) == [2, 3, 4]);
+```
 
 #### `concat`
 
