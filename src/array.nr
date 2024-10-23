@@ -41,7 +41,7 @@ impl<T, let N: u32> crate::ArrayExtensions<T, N> for [T; N] {
 
 // TODO: write tests
 pub fn pack_bytes<let N: u32>(bytes: [u8; N]) -> [Field; N / 31 + 1] {
-    let bytes_padded = bytes.pad_end::<(N / 31 + 1) * 31>(N / 31 + 1) * 31>( 0);
+    let bytes_padded = bytes.pad_end::<(N / 31 + 1) * 31>(0);
     let mut res = [0 as Field; N / 31 + 1];
     for i in 0..N / 31 + 1 {
         let chunk = bytes_padded.slice::<31>(i * 31, i * 31 + 31);
