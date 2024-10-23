@@ -96,12 +96,34 @@ use nodash::str_to_u64;
 assert(str_to_u64("02345678912345678912") == 02345678912345678912);
 ```
 
-### `array_concat`
+### `ArrayExtensions`
+
+#### `concat`
 
 Concatenates two arrays.
 
 ```rs
-use nodash::array_concat;
+use nodash::ArrayExtensions;
 
-assert(array_concat([1, 2, 3], [4, 5]) == [1, 2, 3, 4, 5]);
+assert([1, 2, 3].concat([4, 5]) == [1, 2, 3, 4, 5]);
+```
+
+#### `pad_start`
+
+Pads the start of the array with a value.
+
+```rs
+use nodash::ArrayExtensions;
+
+assert([1, 2, 3].pad_start::<5>(0) == [0, 0, 1, 2, 3]);
+```
+
+#### `pad_end`
+
+Pads the end of the array with a value.
+
+```rs
+use nodash::ArrayExtensions;
+
+assert([1, 2, 3].pad_end::<5>(0) == [1, 2, 3, 0, 0]);
 ```
