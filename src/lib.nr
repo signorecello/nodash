@@ -6,6 +6,7 @@ mod array;
 
 pub use string::{to_hex_string_bytes, str_to_u64};
 pub use math::{clamp, div_ceil, sqrt::sqrt};
+pub use array::pack_bytes;
 
 trait ArrayExtensions<T, let N: u32> {
     fn slice<let M: u32>(self, start: u32, end: u32) -> [T; M];

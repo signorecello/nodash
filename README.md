@@ -9,7 +9,7 @@ Put this into your Nargo.toml.
 If you are using Noir:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash/", tag = "v0.35.4" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "v0.35.5" }
 ```
 
 The version of nodash matches the version of Noir. The patch version may be different if a bugfix or a new feature is added for the same version of Noir. E.g., nodash@v0.35.0 and nodash@v0.35.1 are compatible with noir@v0.35.0.
