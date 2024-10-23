@@ -9,7 +9,7 @@ Put this into your Nargo.toml.
 If you are using Noir:
 
 ```toml
-nodash = { git = "https://github.com/olehmisar/nodash/", tag = "v0.35.3" }
+nodash = { git = "https://github.com/olehmisar/nodash/", tag = "v0.35.4" }
 ```
 
 The version of nodash matches the version of Noir. The patch version may be different if a bugfix or a new feature is added for the same version of Noir. E.g., nodash@v0.35.0 and nodash@v0.35.1 are compatible with noir@v0.35.0.
@@ -136,4 +136,15 @@ Pads the end of the array with a value.
 use nodash::ArrayExtensions;
 
 assert([1, 2, 3].pad_end::<5>(0) == [1, 2, 3, 0, 0]);
+```
+
+### `pack_bytes`
+
+Packs `[u8; N]` into `[Field; N / 31 + 1]`. Useful, if you need to get a hash over bytes. I.e., `pedersen_hash(pack_bytes(bytes))` will be MUCH cheaper than `pedersen_hash(bytes)`.
+
+```rs
+use nodash::pack_bytes;
+
+let bytes: [u8; 32] = [0; 32];
+let packed = pack_bytes(bytes);
 ```
