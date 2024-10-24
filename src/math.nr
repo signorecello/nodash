@@ -1,10 +1,13 @@
-mod sqrt;
-mod numeric;
+pub(crate) mod sqrt;
+pub(crate) mod numeric;
 
 use std::{ops::{Add, Div, Rem}, cmp::Eq};
 use numeric::Numeric;
 
-pub fn clamp<T>(x: T, min: T, max: T) -> T where T: Ord {
+pub fn clamp<T>(x: T, min: T, max: T) -> T
+where
+    T: Ord,
+{
     if (x < min) {
         min
     } else if (x > max) {
@@ -14,7 +17,10 @@ pub fn clamp<T>(x: T, min: T, max: T) -> T where T: Ord {
     }
 }
 
-pub fn div_ceil<T>(a: T, b: T) -> T where T: Add + Div + Rem + Eq + Numeric {
+pub fn div_ceil<T>(a: T, b: T) -> T
+where
+    T: Add + Div + Rem + Eq + Numeric,
+{
     let q = a / b;
     if (a % b == T::zero()) {
         q

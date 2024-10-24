@@ -2,7 +2,10 @@ use std::{ops::{Mul, Div, Add}, cmp::Ord};
 use crate::math::numeric::Numeric;
 
 // TODO: check if this is correct
-pub fn sqrt<T>(value: T) -> T where T: Numeric + Mul + Ord + Add + Div {
+pub fn sqrt<T>(value: T) -> T
+where
+    T: Numeric + Mul + Ord + Add + Div,
+{
     let r = unsafe {
         // Safety: unsafe sqrt is checked to be between bounds
         let r = sqrt_unconstrained(value);
@@ -15,7 +18,10 @@ pub fn sqrt<T>(value: T) -> T where T: Numeric + Mul + Ord + Add + Div {
     r
 }
 
-unconstrained fn sqrt_unconstrained<T>(value: T) -> T where T: Numeric + Ord + Add + Div {
+unconstrained fn sqrt_unconstrained<T>(value: T) -> T
+where
+    T: Numeric + Ord + Add + Div,
+{
     let ZERO: T = Numeric::zero();
     let ONE: T = Numeric::one();
     let TWO = ONE + ONE;
@@ -55,7 +61,10 @@ mod sqrt_tests {
         assert(sqrt(18 as u8) == 4);
         assert(sqrt(2482737472 as u32) == 49827);
         assert(sqrt(14446244073709551616 as u64) == 3800821499);
-        assert(sqrt(U128::from_integer(1444624284781234073709551616)) == U128::from_integer(38008213385809));
+        assert(
+            sqrt(U128::from_integer(1444624284781234073709551616))
+                == U128::from_integer(38008213385809),
+        );
     }
 
     #[test]
@@ -135,7 +144,7 @@ mod sqrt_tests {
             [71, 8],
             // some big numbers
             [9000000000000000000, 3000000000],
-            [8274823429819348192323, 90966056470]
+            [8274823429819348192323, 90966056470],
         ];
 
         for pair in pairs {

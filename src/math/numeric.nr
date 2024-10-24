@@ -1,5 +1,5 @@
 // TODO: remove this trait if it is implemented in Noir std lib.
-trait Numeric {
+pub(crate) trait Numeric {
     fn zero() -> Self;
     fn one() -> Self;
 }
