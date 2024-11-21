@@ -1,9 +1,9 @@
 impl<T, let N: u32> crate::ArrayExtensions<T, N> for [T; N] {
-    fn slice<let M: u32>(self, start: u32, end: u32) -> [T; M] {
-        assert(start + M == end, "slice: invalid slice length");
+    fn slice<let L: u32>(self, start: u32) -> [T; L] {
+        let end = start + L;
         assert(end <= N, "slice: slice end out of bounds");
-        let mut result = [self[0]; M];
-        for i in 0..M {
+        let mut result = [self[0]; L];
+        for i in 0..L {
             result[i] = self[start + i];
         }
         result
@@ -44,7 +44,7 @@ pub fn pack_bytes<let N: u32>(bytes: [u8; N]) -> [Field; N / 31 + 1] {
     let bytes_padded = bytes.pad_end::<(N / 31 + 1) * 31>(0);
     let mut res = [0 as Field; N / 31 + 1];
     for i in 0..N / 31 + 1 {
-        let chunk = bytes_padded.slice::<31>(i * 31, i * 31 + 31);
+        let chunk = bytes_padded.slice::<31>(i * 31);
         res[i] = field_from_bytes(chunk);
     }
     res
@@ -65,7 +65,7 @@ fn field_from_bytes<let N: u32>(bytes: [u8; N]) -> Field {
 mod tests {
     #[test]
     fn test_slice() {
-        assert([1, 2, 3, 4, 5].slice::<3>(1, 4) == [2, 3, 4]);
+        assert([1, 2, 3, 4, 5].slice::<3>(1) == [2, 3, 4]);
     }
 
     #[test]

@@ -4,12 +4,12 @@ mod string;
 mod tables;
 mod array;
 
-pub use string::{to_hex_string_bytes, str_to_u64};
-pub use math::{clamp, div_ceil, sqrt::sqrt};
 pub use array::pack_bytes;
+pub use math::{clamp, div_ceil, sqrt::sqrt};
+pub use string::{str_to_u64, to_hex_string_bytes};
 
 trait ArrayExtensions<T, let N: u32> {
-    fn slice<let M: u32>(self, start: u32, end: u32) -> [T; M];
+    fn slice<let L: u32>(self, start: u32) -> [T; L];
     fn concat<let M: u32>(self, other: [T; M]) -> [T; N + M];
     fn pad_start<let M: u32>(self, pad_value: T) -> [T; M];
     fn pad_end<let M: u32>(self, pad_value: T) -> [T; M];

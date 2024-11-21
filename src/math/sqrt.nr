@@ -1,5 +1,5 @@
-use std::{ops::{Mul, Div, Add}, cmp::Ord};
 use crate::math::numeric::Numeric;
+use std::{cmp::Ord, ops::{Add, Div, Mul}};
 
 // TODO: check if this is correct
 pub fn sqrt<T>(value: T) -> T

@@ -2,6 +2,6 @@
 name = "nodash"
 type = "lib"
 authors = ["Oleh Misarosh <olehmisar@gmail.com>"]
-compiler_version = ">=0.30.0"
+compiler_version = ">=0.38.0"
 
 [dependencies]

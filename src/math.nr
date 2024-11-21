@@ -1,8 +1,8 @@
 pub(crate) mod sqrt;
 pub(crate) mod numeric;
 
-use std::{ops::{Add, Div, Rem}, cmp::Eq};
 use numeric::Numeric;
+use std::{cmp::Eq, ops::{Add, Div, Rem}};
 
 pub fn clamp<T>(x: T, min: T, max: T) -> T
 where
