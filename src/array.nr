@@ -59,6 +59,7 @@ fn field_from_bytes<let N: u32>(bytes: [u8; N]) -> Field {
         as_field += (bytes[i] as Field) * offset;
         offset *= 256;
     }
+    std::as_witness(as_field);
     as_field
 }
 
