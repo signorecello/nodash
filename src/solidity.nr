@@ -1,4 +1,4 @@
-global SELECTOR_LENGTH = 4;
+global SELECTOR_LENGTH: u32 = 4;
 
 pub fn encode_with_selector<let N: u32>(
     selector: u32,

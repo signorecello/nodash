@@ -10,7 +10,7 @@ pub fn to_hex_string_bytes(value: Field) -> [u8; 64] {
     result
 }
 
-global U64_STR_LEN = 20;
+global U64_STR_LEN: u32 = 20;
 pub fn str_to_u64(arr: impl Into<[u8; U64_STR_LEN]>) -> u64 {
     let arr = arr.into();
 
